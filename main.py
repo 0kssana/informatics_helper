@@ -1,4 +1,4 @@
-from converteriMain import converter_interface
+from converterMain import converter_interface
 from binOperMain import binary_operations_interface
 from tableMain import truth_table_interface
 
