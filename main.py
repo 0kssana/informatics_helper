@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-from converterMain import converter_interface
-from binOperMain import binary_operations_interface
-from tableMain import truth_table_interface
->>>>>>> converter
+from itertools import product
+from prettytable import PrettyTable
+import re
 
 
 class CalculatorError(Exception):
