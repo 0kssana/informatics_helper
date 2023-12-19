@@ -29,6 +29,7 @@ class InvalidInputError(CalculatorError):
        This exception is inherited from `CalculatorError`.
 
     """
+
     def __init__(self, message="Некорректный ввод"):
         """
         Initializes the InvalidInputError object.
@@ -38,7 +39,6 @@ class InvalidInputError(CalculatorError):
         """
         self.message = message
         super().__init__(self.message)
-
 
 
 class CalculationError(CalculatorError):
@@ -54,6 +54,7 @@ class CalculationError(CalculatorError):
     .. note::
        This exception is inherited from `CalculatorError`.
     """
+
     def __init__(self, message="Ошибка во время вычислений."):
         """
         Initializes the CalculationError object.
@@ -63,14 +64,14 @@ class CalculationError(CalculatorError):
         """
         self.message = message
         super().__init__(self.message)
-   
+
 
 class Calculator:
     """
     Utility class providing various mathematical and binary operations.
 
     """
-    
+
     class LogicExpressionParser:
         """
         Parses logic expressions, extracting variables and their relationships.
@@ -87,6 +88,7 @@ class Calculator:
         :type expression_structure: list
 
         """
+
         def __init__(self):
             """
             Initializes a LogicExpressionParser object.
@@ -166,7 +168,8 @@ class Calculator:
         :raises InvalidInputError: If the input bases are not within the supported range (2 to 36).
         """
         if not (2 <= from_base <= 36) or not (2 <= to_base <= 36):
-            raise InvalidInputError("Ошибка: Неподдерживаемая система счисления.")
+            raise InvalidInputError(
+                "Ошибка: Неподдерживаемая система счисления.")
 
         steps = []
 
@@ -177,7 +180,6 @@ class Calculator:
             num = quotient
 
         return steps[::-1]
-
 
     @staticmethod
     def display_conversion_steps(steps, result_base):
@@ -194,7 +196,8 @@ class Calculator:
         :rtype: str
         """
         for step in steps:
-            print(f"{step[0]} // {result_base} = {step[1]}, остаток = {step[2]}")
+            print(
+                f"{step[0]} // {result_base} = {step[1]}, остаток = {step[2]}")
 
         string = ''.join(map(str, [step[2] for step in steps]))
         if result_base >= 16:
@@ -280,7 +283,8 @@ class Calculator:
             if b % 2 == 1:
                 partial_product = a << shift
                 result += partial_product
-                print(f"{bin(partial_product)[2:]:>5}   ({partial_product}), Shift: {shift}")
+                print(
+                    f"{bin(partial_product)[2:]:>5}   ({partial_product}), Shift: {shift}")
 
             b >>= 1
             shift += 1
@@ -326,10 +330,12 @@ class Calculator:
 
                 position -= 1
 
-                print(f"{bin(quotient)[2:]:>{position + 3}} R:{bin(remainder)[2:]}")
+                print(
+                    f"{bin(quotient)[2:]:>{position + 3}} R:{bin(remainder)[2:]}")
 
             print("-" * (position + 3))
-            print(f"{bin(quotient)[2:]:>{position + 3}}   ({quotient} в десятичной)")
+            print(
+                f"{bin(quotient)[2:]:>{position + 3}}   ({quotient} в десятичной)")
             return quotient
 
         except ZeroDivisionError as e:
@@ -364,7 +370,8 @@ class Calculator:
         :return: The inverse code representation of the binary number.
         :rtype: str
         """
-        ones_complement = ''.join('1' if bit == '0' else '0' for bit in binary_number[1:])
+        ones_complement = ''.join(
+            '1' if bit == '0' else '0' for bit in binary_number[1:])
         return binary_number[0] + ones_complement
 
     @staticmethod
@@ -400,7 +407,8 @@ def main():
             while True:
                 print("\nВыберите действие:")
                 print("1. Перевод между системами счисления.")
-                print("2. Преобразование двоичных чисел в прямой, обратный и дополнительный код.")
+                print(
+                    "2. Преобразование двоичных чисел в прямой, обратный и дополнительный код.")
                 print("3. Умножение двоичных чисел.")
                 print("4. Деление двоичных чисел.")
                 print("5. Построение таблицы истинности.")
@@ -415,15 +423,20 @@ def main():
                     break
 
                 if choice == "1":
-                    source_base = int(input("Введите исходную систему счисления (2, 8, 10, 16, 36): "))
-                    target_base = int(input("Введите целевую систему счисления (2, 8, 10, 16, 36): "))
+                    source_base = int(
+                        input("Введите исходную систему счисления (2, 8, 10, 16, 36): "))
+                    target_base = int(
+                        input("Введите целевую систему счисления (2, 8, 10, 16, 36): "))
 
-                    number = input(f"Введите число в системе счисления {source_base}: ")
+                    number = input(
+                        f"Введите число в системе счисления {source_base}: ")
 
                     decimal_number = int(number, source_base)
 
-                    conversion_steps = Calculator.convert_number_step_by_step(decimal_number, source_base, target_base)
-                    Calculator.display_conversion_steps(conversion_steps, target_base)
+                    conversion_steps = Calculator.convert_number_step_by_step(
+                        decimal_number, source_base, target_base)
+                    Calculator.display_conversion_steps(
+                        conversion_steps, target_base)
 
                 elif choice == "2":
                     binary_number = input("Введите двоичное число: ")
@@ -431,14 +444,17 @@ def main():
                         if all(bit in '01' for bit in binary_number):
                             bit_length = len(binary_number)
 
-                            direct_code = Calculator.convert_to_direct_code(int(binary_number, 2), bit_length)
+                            direct_code = Calculator.convert_to_direct_code(
+                                int(binary_number, 2), bit_length)
 
                             if direct_code[0] == '0':
                                 inverse_code = direct_code
                                 additional_code = direct_code
                             else:
-                                inverse_code = Calculator.convert_to_inverse_code(direct_code)
-                                additional_code = Calculator.convert_to_additional_code(direct_code)
+                                inverse_code = Calculator.convert_to_inverse_code(
+                                    direct_code)
+                                additional_code = Calculator.convert_to_additional_code(
+                                    direct_code)
 
                             print("Прямой код:", direct_code)
                             print("Обратный код:", inverse_code)
@@ -458,8 +474,10 @@ def main():
                     Calculator.binary_multiply_with_steps(num1, num2)
 
                 elif choice == "4":
-                    dividend = int(input("Введите делимое двоичное число: "), 2)
-                    divisor = int(input("Введите делитель двоичное число: "), 2)
+                    dividend = int(
+                        input("Введите делимое двоичное число: "), 2)
+                    divisor = int(
+                        input("Введите делитель двоичное число: "), 2)
                     Calculator.binary_divide_with_steps(dividend, divisor)
 
                 elif choice == "5":
@@ -470,20 +488,25 @@ def main():
                 elif choice == "6":
                     expression = input("Введите логическое выражение: ")
                     logic_parser = Calculator.LogicExpressionParser()
-                    variables, expression_structure = logic_parser.analyze_logic_expression(expression)
+                    variables, expression_structure = logic_parser.analyze_logic_expression(
+                        expression)
                     print("Переменные:", variables)
                     print("Структура выражения:", expression_structure)
                 else:
-                    print("Некорректный выбор. Пожалуйста, введите правильный номер действия.")
+                    print(
+                        "Некорректный выбор. Пожалуйста, введите правильный номер действия.")
 
         except InvalidInputError as inputexept:
-            print(f"Некорректный ввод: {inputexept.message}, введите пожалуйста значение корректно.")
+            print(
+                f"Некорректный ввод: {inputexept.message}, введите пожалуйста значение корректно.")
         except CalculationError as e:
-            print(f"Ошибка во время вычислений: {e.message}. Пожалуйста, проверьте введенные данные.")
+            print(
+                f"Ошибка во время вычислений: {e.message}. Пожалуйста, проверьте введенные данные.")
         except ValueError as e:
             print(f"Ошибка: {e}. Введите корректные данные.")
         except Exception as e:
-            print(f"Произошла непредвиденная ошибка: {e}. Пожалуйста, проверьте введенные данные.")
+            print(
+                f"Произошла непредвиденная ошибка: {e}. Пожалуйста, проверьте введенные данные.")
 
 
 if __name__ == "__main__":
