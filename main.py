@@ -4,25 +4,69 @@ import re
 
 
 class CalculatorError(Exception):
+    """
+    Base exception class for errors that may occur during calculations.
+
+    This class inherits from the built-in `Exception` class.
+
+    :return: An instance of CalculatorError.
+    :rtype: CalculatorError
+    """
     pass
 
 
 class InvalidInputError(CalculatorError):
+    """
+    Exception raised when an invalid input is detected in the calculator.
 
+    :param message: The error message (default is "Invalid input").
+    :type message: str
+
+    :ivar message: The error message that can be provided when creating an object.
+    :vartype message: str
+
+    .. note::
+       This exception is inherited from `CalculatorError`.
+
+    """
     def __init__(self, message="Некорректный ввод"):
+        """
+        Initializes the InvalidInputError object.
+
+        :param message: The error message (default is "Invalid input").
+        :type message: str
+        """
         self.message = message
         super().__init__(self.message)
 
 
 
 class CalculationError(CalculatorError):
+    """
+    Exception raised when an error occurs during calculations in the calculator.
 
+    :param message: The error message (default is "Error during calculations").
+    :type message: str
+
+    :ivar message: The error message that can be provided when creating an object.
+    :vartype message: str
+
+    .. note::
+       This exception is inherited from `CalculatorError`.
+    """
     def __init__(self, message="Ошибка во время вычислений."):
+        """
+        Initializes the CalculationError object.
+
+        :param message: The error message (default is "Error during calculations").
+        :type message: str
+        """
         self.message = message
         super().__init__(self.message)
    
 
 class Calculator:
+    
     class LogicExpressionParser:
         def __init__(self):
             self.operators = {'and', 'or', 'not'}
