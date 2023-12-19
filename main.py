@@ -66,6 +66,10 @@ class CalculationError(CalculatorError):
    
 
 class Calculator:
+    """
+    Utility class providing various mathematical and binary operations.
+
+    """
     
     class LogicExpressionParser:
         """
@@ -145,7 +149,22 @@ class Calculator:
 
     @staticmethod
     def convert_number_step_by_step(num, from_base, to_base):
+        """
+        Converts a number from one base to another with step-by-step display.
 
+        :param num: The number to be converted.
+        :type num: int
+        :param from_base: The base of the original number.
+        :type from_base: int
+        :param to_base: The desired base for the result.
+        :type to_base: int
+
+        :return: A list of tuples representing the conversion steps.
+                 Each tuple has the format (current_number, quotient, remainder).
+        :rtype: list of tuples
+
+        :raises InvalidInputError: If the input bases are not within the supported range (2 to 36).
+        """
         if not (2 <= from_base <= 36) or not (2 <= to_base <= 36):
             raise InvalidInputError("Ошибка: Неподдерживаемая система счисления.")
 
@@ -162,6 +181,18 @@ class Calculator:
 
     @staticmethod
     def display_conversion_steps(steps, result_base):
+        """
+        Displays the steps of a conversion process.
+
+        :param steps: List of tuples representing conversion steps.
+                      Each tuple has the format (dividend, quotient, remainder).
+        :type steps: list of tuples
+        :param result_base: The base of the result.
+        :type result_base: int
+
+        :return: The result of the conversion.
+        :rtype: str
+        """
         for step in steps:
             print(f"{step[0]} // {result_base} = {step[1]}, остаток = {step[2]}")
 
@@ -185,6 +216,15 @@ class Calculator:
 
     @staticmethod
     def build_truth_table(expression):
+        """
+        Builds a truth table for a logical expression.
+
+        :param expression: The logical expression to build the truth table for.
+        :type expression: str
+
+        :return: A tuple containing the header (variable names and expression) and rows of the truth table.
+        :rtype: tuple
+        """
         variables = sorted(set(re.findall(r'\b[A-Za-z]\b', expression)))
         table_header = variables + [expression]
         table_rows = []
@@ -200,6 +240,14 @@ class Calculator:
 
     @staticmethod
     def print_truth_table(header, rows):
+        """
+        Prints a truth table.
+
+        :param header: List of column headers.
+        :type header: list
+        :param rows: List of rows in the truth table.
+        :type rows: list
+        """
         table = PrettyTable(header)
         table.align = "c"
 
@@ -210,6 +258,17 @@ class Calculator:
 
     @staticmethod
     def binary_multiply_with_steps(a, b):
+        """
+        Performs binary multiplication with step-by-step display.
+
+        :param a: The first binary number.
+        :type a: int
+        :param b: The second binary number.
+        :type b: int
+
+        :return: The result of the binary multiplication.
+        :rtype: int
+        """
         result = 0
         shift = 0
 
@@ -233,6 +292,19 @@ class Calculator:
 
     @staticmethod
     def binary_divide_with_steps(dividend, divisor):
+        """
+        Performs binary division with step-by-step display.
+
+        :param dividend: The dividend in binary.
+        :type dividend: int
+        :param divisor: The divisor in binary.
+        :type divisor: int
+
+        :return: The quotient of the binary division.
+        :rtype: int
+
+        :raises CalculationError: If there is an error during the division.
+        """
         try:
             if divisor == 0:
                 raise ZeroDivisionError("Нельзя делить на ноль")
@@ -267,16 +339,45 @@ class Calculator:
 
     @staticmethod
     def convert_to_direct_code(binary_number, bit_length):
+        """
+        Converts a binary number to direct code.
+
+        :param binary_number: The binary number to be converted.
+        :type binary_number: int
+        :param bit_length: The desired bit length of the direct code.
+        :type bit_length: int
+
+        :return: The direct code representation of the binary number.
+        :rtype: str
+        """
         binary = bin(binary_number)[2:]
         return binary.zfill(bit_length)
 
     @staticmethod
     def convert_to_inverse_code(binary_number):
+        """
+        Converts a binary number to inverse code.
+
+        :param binary_number: The binary number to be converted.
+        :type binary_number: str
+
+        :return: The inverse code representation of the binary number.
+        :rtype: str
+        """
         ones_complement = ''.join('1' if bit == '0' else '0' for bit in binary_number[1:])
         return binary_number[0] + ones_complement
 
     @staticmethod
     def convert_to_additional_code(binary_number):
+        """
+        Converts a binary number to additional code.
+
+        :param binary_number: The binary number to be converted.
+        :type binary_number: str
+
+        :return: The additional code representation of the binary number.
+        :rtype: str
+        """
         ones_complement = Calculator.convert_to_inverse_code(binary_number)
         twos_complement = bin(int(ones_complement, 2) + 1)[2:]
         return twos_complement.zfill(len(binary_number[1:]))
