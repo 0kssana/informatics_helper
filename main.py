@@ -68,12 +68,39 @@ class CalculationError(CalculatorError):
 class Calculator:
     
     class LogicExpressionParser:
+        """
+        Parses logic expressions, extracting variables and their relationships.
+
+        :ivar operators: Set of supported logical operators {'and', 'or', 'not'}.
+        :vartype operators: set
+
+        :ivar variables: Set of variables encountered in the logic expression.
+        :vartype variables: set
+
+        :ivar expression_structure: List representing the structure of the logic expression.
+                                Each element is a tuple ('Type', 'Value').
+                                Type can be 'Оператор' for operators or 'Скобка' for parentheses.
+        :vartype expression_structure: list
+
+        """
         def __init__(self):
+            """
+            Initializes a LogicExpressionParser object.
+            """
             self.operators = {'and', 'or', 'not'}
             self.variables = set()
             self.expression_structure = []
 
         def analyze_logic_expression(self, expression):
+            """
+            Analyzes the provided logic expression, extracting variables and expression structure.
+
+            :param expression: The logic expression to be analyzed.
+            :type expression: str
+
+            :return: A tuple containing the set of variables and the expression structure.
+            :rtype: tuple
+            """
             current_token = ''
 
             for char in expression:
@@ -95,12 +122,24 @@ class Calculator:
             return self.variables, self.expression_structure
 
         def process_token(self, token):
+            """
+            Processes a token in the logic expression.
+
+            :param token: The token to be processed.
+            :type token: str
+            """
             if token.lower() in self.operators:
                 self.expression_structure.append(('Оператор', token.lower()))
             else:
                 self.variables.add(token)
 
         def process_char(self, char):
+            """
+            Processes a character in the logic expression.
+
+            :param char: The character to be processed.
+            :type char: str
+            """
             if char in {'(', ')'}:
                 self.expression_structure.append(('Скобка', char))
 
