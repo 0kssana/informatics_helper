@@ -23,7 +23,7 @@ class InvalidInputError(CalculatorError):
     :type message: str
 
     :ivar message: The error message that can be provided when creating an object.
-    :vartype message: str
+    :type message: str
 
     .. note::
        This exception is inherited from `CalculatorError`.
@@ -49,7 +49,7 @@ class CalculationError(CalculatorError):
     :type message: str
 
     :ivar message: The error message that can be provided when creating an object.
-    :vartype message: str
+    :type message: str
 
     .. note::
        This exception is inherited from `CalculatorError`.
@@ -72,15 +72,15 @@ class Calculator:
         Parses logic expressions, extracting variables and their relationships.
 
         :ivar operators: Set of supported logical operators {'and', 'or', 'not'}.
-        :vartype operators: set
+        :type operators: set
 
         :ivar variables: Set of variables encountered in the logic expression.
-        :vartype variables: set
+        :type variables: set
 
         :ivar expression_structure: List representing the structure of the logic expression.
                                 Each element is a tuple ('Type', 'Value').
                                 Type can be 'Оператор' for operators or 'Скобка' for parentheses.
-        :vartype expression_structure: list
+        :type expression_structure: list
 
         """
         def __init__(self):
