@@ -2,3 +2,5 @@ pip                 23.3.2
 pydoctor            23.9.1
 pytest              7.4.2
 prettytable         0.7.2
+flake8              5.0.4
+autopep8            2.0.1
