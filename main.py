@@ -384,6 +384,14 @@ class Calculator:
 
 
 def main():
+    """
+    Entry point for the Computer Science Calculator.
+
+    The main function provides a command-line interface for various computer science operations,
+    including conversion between number bases, binary code transformations, binary multiplication and division,
+    truth table generation, and logical expression analysis.
+
+    """
     print("Добро пожаловать в Калькулятор для информатики!")
     stay = True
     while stay:
