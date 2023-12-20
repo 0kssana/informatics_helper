@@ -1,4 +1,5 @@
-# informatics_helper
+
+# Калькулятор по информатике
 
 Перед вами представлено консольное приложение "калькулятор по информатике". Основная цель проекта - значительно упростить расчёты базовых примеров из информатики. 
 
@@ -15,21 +16,55 @@
 - Построение таблиц истиности для произвольных логических выражений. 
 
 - Анализ логических выражений. 
-## УСТАНОВКА ПРОЕКТА
+## Установка и запуск проекта
 
-Предполагается, что у Вас уже установлен Python3
-1. Подтягиваем репозиторий
+Clone the project
+
 ```bash
   git clone https://github.com/0kssana/informatics_helper.git
 ```
-2. Переходим в папку с проектом:
+
+Go to the project directory
+
 ```bash
-cd informatics_helper/
+  cd informatics_helper/
 ```
-3. Устанавливаем необходимые зависимости:
+
+Install dependencies
+
 ```bash
-python3 -m pip install -r requirements.txt
+  python3 -m pip install -r requirements.txt
 ```
+
+Start the server
+
+```bash
+  python3 main.py 
+```
+
+
+## Пример работы   
+
+Начальный интерфейс
+
+![Начальный интерфейс](https://github.com/0kssana/informatics_helper/raw/dev/img/photo_1_2023-12-20_03-22-49.jpg)
+
+Перевод между с/С
+
+![1. Перевод между с/с](https://github.com/0kssana/informatics_helper/raw/dev/img/photo_3_2023-12-20_03-22-49.jpg)
+
+Преобразование двоичных чисел
+
+![2. Преобразование двоичных чисел](https://github.com/0kssana/informatics_helper/raw/dev/img/photo_4_2023-12-20_03-22-49.jpg)
+
+Умножение двоичных чисел
+
+![3. Умножение двоичных чисел](https://github.com/0kssana/informatics_helper/raw/dev/img/photo_2_2023-12-20_03-22-49.jpg)
+
+Построение таблицы исиности
+
+![Таблица истиности](https://github.com/0kssana/informatics_helper/raw/dev/img/photo_2023-12-20_03-22-55.jpg)
+
 
 ## Running Tests
 
@@ -38,4 +73,9 @@ python3 -m pip install -r requirements.txt
 ```bash
   pytest
 ```
+
+
+## Authors
+
+- [@Oksana D](https://www.github.com/0kssana)
 
